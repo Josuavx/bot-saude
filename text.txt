@@ -1,0 +1,6 @@
+session: 31ac21cc-7e7c-1557-cf1e-157789db166e
+project: testinho-yoke
+url: https://dialogflow.clients6.google.com/v2/projects/testinho-yoke/agent/sessions/
+
+id de cliente: 88917539485-88bk2mt817mlqgkad6bsd0r88o31q69e.apps.googleusercontent.com
+chave secreta: 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
