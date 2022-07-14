@@ -1,3 +1,4 @@
+from Paciente import Paciente
 import mysql.connector
 from mysql.connector import errorcode
 """try:
@@ -15,6 +16,8 @@ else:
 	db_connection.close()
 """
 
+
+
 # db_connection = mysql.connector.connect(host='localhost', user='root', password='', database='bot-saude')
 # cursor = db_connection.cursor()
 
@@ -23,34 +26,74 @@ else:
 db_connection = mysql.connector.connect(host='localhost', user='root', password='', database='bot-saude')
 cursor = db_connection.cursor()
 
-def Cadastro(nome, senha, idade, email):
-	id = 'DEFAULT'
+def preencherPaciente(resultado):
+	
+	print(resultado)
+	id, nome, senha, idade, email = resultado
+	pc_info1 = Paciente(id)
+	pc_info2 = Paciente(nome)
+	pc_info3 = Paciente(email)
 
+	print('id: ', id)
+	print('nome: ', nome)
+	print('email: ', email)
+
+	pc_info1.setId(id)
+	pc_info2.setNome(nome)
+	pc_info3.setEmail(email)
+
+
+
+def cadastro(nome, senha, idade, email):
+	id = 'DEFAULT'
+	
 	sql = f'INSERT INTO Paciente (id_do_paciente, nome_paciente, senha_paciente, idade, email) VALUES ({id}, "{nome}", "{senha}", {idade}, "{email}")'
 
 	cursor.execute(sql)
 
 
-Cadastro('Pedro Silvino Aguiar', 'senha2', '29', 'pedro@gmail.com')
+#Cadastro('Pedro Silvino Aguiar', 'senha2', '29', 'pedro@gmail.com')
 
 #READ
-def ValidarLogin(email, senha):
+def validarLogin(email, senha):
 
-	sql = f'SELECT * FROM Paciente WHERE email="{email}" AND senha_paciente="{senha}"'
+	sql = f'SELECT * FROM Paciente WHERE (email="{email}") AND (senha_paciente="{senha}")'
 	cursor.execute(sql)
 	resultado = cursor.fetchall()
+	preencherPaciente(resultado[0])
 
-res = ValidarLogin('cleber@gmail.com', 'senha3')
+	ret1 = Paciente()
+	ret2 = Paciente()
+	ret3 = Paciente()
 
-print(res)
+	retorno1 = ret1.getId()
+	retorno2 = ret2.getNome()
+	retorno3 = ret3.getEmail()
 
+	print('retorno:'+retorno1+"retorno 2: "+retorno2+"retorno3: ", retorno3)
+
+	return resultado
+
+res = validarLogin('cleber@gmail.com', 'senha3')
+
+if res != None:
+	print('Logado com sucesso!')
+
+
+
+
+
+
+
+#DELETE
+"""
+def cancelarConsulta(data):
+
+	sql = f'DELETE FROM Consultas WHERE data = "{data}"' #adicionar um and, pegar o id do paciente e comparar
+	cursor.execute(sql)
 
 
 """
-#DELETE
-data = '2022-07-15'
-
-sql = f'DELETE FROM Consultas WHERE data = "{data}"' #adicionar um and, pegar o id do paciente e comparar
 
 cursor.close()
 db_connection.close()
@@ -59,4 +102,3 @@ db_connection.close()
 
 
 #Cadastro('antonio', 'senha2', '20', 'antonio@gmail.com')
-"""
