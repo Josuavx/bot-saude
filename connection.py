@@ -26,22 +26,18 @@ else:
 db_connection = mysql.connector.connect(host='localhost', user='root', password='', database='bot-saude')
 cursor = db_connection.cursor()
 
-def preencherPaciente(resultado):
+"""def preencherPaciente(resultado):
 	
 	print(resultado)
 	id, nome, senha, idade, email = resultado
-	pc_info1 = Paciente(id)
-	pc_info2 = Paciente(nome)
-	pc_info3 = Paciente(email)
 
-	print('id: ', id)
-	print('nome: ', nome)
-	print('email: ', email)
 
-	pc_info1.setId(id)
-	pc_info2.setNome(nome)
-	pc_info3.setEmail(email)
+	#pc_info = Paciente(id, nome, email)
 
+	ret.setId(id)
+	pc_info.setNome(nome)
+	pc_info.setEmail(email)
+"""
 
 
 def cadastro(nome, senha, idade, email):
@@ -60,17 +56,29 @@ def validarLogin(email, senha):
 	sql = f'SELECT * FROM Paciente WHERE (email="{email}") AND (senha_paciente="{senha}")'
 	cursor.execute(sql)
 	resultado = cursor.fetchall()
-	preencherPaciente(resultado[0])
+	
+	
+	ret = Paciente(None, None, None)
 
-	ret1 = Paciente()
-	ret2 = Paciente()
-	ret3 = Paciente()
+	##retorno = ret.setNome('13')
 
-	retorno1 = ret1.getId()
-	retorno2 = ret2.getNome()
-	retorno3 = ret3.getEmail()
+	#preencherPaciente(resultado[0])
 
-	print('retorno:'+retorno1+"retorno 2: "+retorno2+"retorno3: ", retorno3)
+	res = resultado[0]
+	id, nome, senha, idade, email = res
+
+	ret.setId(id)
+	ret.setNome(nome)
+	ret.setEmail(email)
+
+	retorno1 = ret.getId()
+	retorno2 = ret.getNome()
+	retorno3 = ret.getEmail()
+
+	#print('retorno:'+retorno1+"retorno 2: "+retorno2+"retorno3: ", retorno3)
+	print(retorno1)
+	print(retorno2)
+	print(retorno3)
 
 	return resultado
 
