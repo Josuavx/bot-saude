@@ -16,8 +16,6 @@ else:
 	db_connection.close()
 """
 
-
-
 # db_connection = mysql.connector.connect(host='localhost', user='root', password='', database='bot-saude')
 # cursor = db_connection.cursor()
 
@@ -47,7 +45,7 @@ def cadastro(nome, senha, idade, email):
 
 	cursor.execute(sql)
 
-
+ret = Paciente(None, None, None)
 #Cadastro('Pedro Silvino Aguiar', 'senha2', '29', 'pedro@gmail.com')
 
 #READ
@@ -57,8 +55,7 @@ def validarLogin(email, senha):
 	cursor.execute(sql)
 	resultado = cursor.fetchall()
 	
-	
-	ret = Paciente(None, None, None)
+	#ret = Paciente(None, None, None)
 
 	##retorno = ret.setNome('13')
 
@@ -82,31 +79,26 @@ def validarLogin(email, senha):
 
 	return resultado
 
-res = validarLogin('cleber@gmail.com', 'senha3')
+res = validarLogin('fabio@gmail.com', 'senha1')
 
 if res != None:
 	print('Logado com sucesso!')
 
 
-
-
-
-
-
 #DELETE
-"""
-def cancelarConsulta(data):
 
-	sql = f'DELETE FROM Consultas WHERE data = "{data}"' #adicionar um and, pegar o id do paciente e comparar
+def cancelarConsulta(data, id):
+
+	sql = f'DELETE FROM Consultas WHERE (data_consult = "{data}") AND id_paciente = {id}' #adicionar um and, pegar o id do paciente e comparar
 	cursor.execute(sql)
+	print('deletado')
 
+id = ret.getId()
 
-"""
+cancelarConsulta('2022-07-15', id)
 
 cursor.close()
 db_connection.close()
-
-
 
 
 #Cadastro('antonio', 'senha2', '20', 'antonio@gmail.com')
