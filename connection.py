@@ -23,33 +23,34 @@ else:
 db_connection = mysql.connector.connect(host='localhost', user='root', password='', database='bot-saude')
 cursor = db_connection.cursor()
 
-id = ''
-nome = 'Cleber Gomes da Silva'
-senha = 'senha3'
-idade = 25
-email = 'cleber@gmail.com'
+def Cadastro(nome, senha, idade, email):
+	id = 'DEFAULT'
 
-sql = f'INSERT INTO Paciente (id_do_paciente, nome_paciente, senha_paciente, idade, email) VALUES ({id}, "{nome}", "{senha}", {idade}, "{email}")'
+	sql = f'INSERT INTO Paciente (id_do_paciente, nome_paciente, senha_paciente, idade, email) VALUES ({id}, "{nome}", "{senha}", {idade}, "{email}")'
 
-cursor.execute(sql)
-cursor.commit()
+	cursor.execute(sql)
 
+
+Cadastro('Pedro Silvino Aguiar', 'senha2', '29', 'pedro@gmail.com')
 
 #READ
+def ValidarLogin(email, senha):
 
-email = 'fabio@gmail.com'
+	sql = f'SELECT * FROM Paciente WHERE email="{email}" AND senha_paciente="{senha}"'
+	cursor.execute(sql)
+	resultado = cursor.fetchall()
 
-sql = f'SELECT * FROM Paciente WHERE email="{email}"'
-cursor.execute(sql)
-resultado = cursor.fetchall()
+res = ValidarLogin('cleber@gmail.com', 'senha3')
+
+print(res)
 
 
 
-
+"""
 #DELETE
 data = '2022-07-15'
 
-sql = f'DELETE FROM Consultas WHERE data = "{data}"'
+sql = f'DELETE FROM Consultas WHERE data = "{data}"' #adicionar um and, pegar o id do paciente e comparar
 
 cursor.close()
 db_connection.close()
@@ -58,3 +59,4 @@ db_connection.close()
 
 
 #Cadastro('antonio', 'senha2', '20', 'antonio@gmail.com')
+"""
