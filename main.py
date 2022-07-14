@@ -41,7 +41,6 @@ appflow.fetch_token(code=code)
 credencial = appflow.credentials
 
 
-
 while(True):
     txt = input("Mensagem: ")
     payload = payload = {
