@@ -37,7 +37,6 @@ cursor = db_connection.cursor()
 	pc_info.setEmail(email)
 """
 
-
 def cadastro(nome, senha, idade, email):
 	id = 'DEFAULT'
 	
@@ -47,6 +46,42 @@ def cadastro(nome, senha, idade, email):
 
 ret = Paciente(None, None, None)
 #Cadastro('Pedro Silvino Aguiar', 'senha2', '29', 'pedro@gmail.com')
+
+
+def consultasDisponiveis():
+	#funciona
+
+	sql = 'SELECT * FROM consultasDisponiveis'
+	cursor.execute(sql)
+	resultado = cursor.fetchall()
+	
+
+	return resultado
+
+
+#re = consultasDisponiveis()
+
+#print('re: ', re)
+
+
+
+def marcarConsulta(ID_disponivel, id_medico, data, horario, lugar_medico):
+
+	ID = 'DEFAULT'
+
+	id_paciente = 1 #ret.getId()
+
+	sql = f'INSERT INTO Consultas (ID, id_paciente, id_medico, data_consult, horario, lugar_medico) VALUES ({ID}, {id_paciente}, {id_medico}, "{data}", "{horario}", "{lugar_medico}")'
+	cursor.execute(sql)
+	sql = f'DELETE FROM consultasDisponiveis WHERE ID = {ID_disponivel}'
+	cursor.execute(sql)
+
+	return 'Consulta marcada com sucesso!'
+
+#p = marcarConsulta(1, 1, '2022-07-15', '15:45:00', 'rua1')
+#print(p)
+	
+
 
 #READ
 def validarLogin(email, senha):
@@ -79,11 +114,24 @@ def validarLogin(email, senha):
 
 	return resultado
 
-res = validarLogin('fabio@gmail.com', 'senha1')
+#res = validarLogin('fabio@gmail.com', 'senha1')
 
-if res != None:
-	print('Logado com sucesso!')
+#if res != None:
+#	print('Logado com sucesso!')
 
+
+
+def consultasMarcadas():
+	sql = f'SELECT * FROM Consultas WHERE id_paciente = {id}'
+
+	cursor.execute(sql)
+	resultado = cursor.fetchall()
+
+	return resultado
+
+
+#res = consultasMarcadas()
+#print('res: ', res)
 
 #DELETE
 
@@ -95,10 +143,9 @@ def cancelarConsulta(data, id):
 
 id = ret.getId()
 
-cancelarConsulta('2022-07-15', id)
+##cancelarConsulta('2022-07-15', id)
 
 cursor.close()
 db_connection.close()
-
 
 #Cadastro('antonio', 'senha2', '20', 'antonio@gmail.com')
