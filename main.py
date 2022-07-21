@@ -1,48 +1,31 @@
 
+
 from google_auth_oauthlib.flow import Flow
 import requests
 from utils import CONST
 import json
-from selenium import webdriver
-from selenium .webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 import time
 
-appflow = Flow.from_client_secrets_file(
-    'client_secret.json',
-    scopes=['openid', 'https://www.googleapis.com/auth/dialogflow',
-            'https://www.googleapis.com/auth/cloud-platform'],
-    redirect_uri='http://localhost:5000')
+def Google():
+    appflow = Flow.from_client_secrets_file(
+        'client_secret.json',
+        scopes=['openid', 'https://www.googleapis.com/auth/dialogflow',
+                'https://www.googleapis.com/auth/cloud-platform'],
+        redirect_uri='http://127.0.0.1:5000/login') #Aqui tá redirecionando apos o login com google pra pasta padrao
 
-auth_uri = appflow.authorization_url()
-print(auth_uri)
+    auth_uri = appflow.authorization_url()
+    print(auth_uri)
+    
+    code = input('digite: ')
+    appflow.fetch_token(code=code)
+    credencial = appflow.credentials
 
-"""
-driver = webdriver.Firefox()
-driver.get(auth_uri[0])
-##print(auth_uri)
-time.sleep(3)
-username = driver.find_element(By.NAME, CONST.id_username)
-username.send_keys(CONST.USERNAME)
-username.send_keys(Keys.RETURN)
-time.sleep(3)
-password = driver.find_element(By.NAME, CONST.id_password)
-password.send_keys(CONST.PASSWORD)
-password.send_keys(Keys.RETURN)
-time.sleep(40)
-"""
-"""btn = driver.find_element(By.CLASS_NAME, 'VfPpkd-vQzf8d') 
-btn.click()
-"""
-#driver.quit()
-
-code = input('digite: ')
-appflow.fetch_token(code=code)
-credencial = appflow.credentials
+    return credencial #auth_uri
 
 
-while(True):
-    txt = input("Mensagem: ")
+def Conversa(credencial, txt): #receber txt como
+#while(True):
+    #txt = input("Mensagem: ")
     payload = payload = {
         "queryParams": {
             "source": "DIALOGFLOW_CONSOLE",
@@ -59,16 +42,24 @@ while(True):
     headers = {
         'accept': 'application/json text/plain, */*',
         'content-type': 'application/json; charset=UTF-8',
-        'authorization': 'Bearer ' + credencial.token
+        'authorization': 'Bearer ' + credencial
     }
 
     res = requests.post(CONST.URL, headers=headers, json=payload)
-    if(res.status_code==200):
+    if(res.status_code == 200):
         resp = json.loads(res.text)
         resp_message = resp['queryResult']['fulfillmentMessages']
-        print(resp_message)
+ 
+        if len(resp_message) > 1:
+            c = 0
+            re = []
+            for i in resp_message:
+                contagem = resp_message[c]['text']['text'][0]
+                re.append(contagem)
+                c += 1
+        else:
+            re = contagem = resp_message[0]['text']['text'][0]
+        
+        
+        return re
 
-
-#identifier
-#password
-#VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-INsAgc VfPpkd-LgbsSe-OWXEXe-dgl2Hf Rj2Mlf OLiIxf PDpWxe P62QJc qfvgSe xYnMae TrZEUc lw1w4b
