@@ -81,7 +81,7 @@ def chat():
             retorno = connection.consultasMarcadas(values.id)
             #retorno = retorno[0]
 
-        elif (retorno[0] == 'cancelar'):
+        elif (retorno == 'cancelar'):
             retorno = connection.cancelarConsulta(values.id)
 
         return {'res': retorno}

@@ -25,24 +25,24 @@ def consultasDisponiveis():
 	sql = 'SELECT * FROM consultasDisponiveis'
 	cursor.execute(sql)
 	resultado = cursor.fetchall()
-	
 
+	
 	return (resultado, 'Digite o ID da consulta que gostaria de marcar: ')
 
 def marcarConsulta(ID_disponivel, id_paciente):
 	db_connection = mysql.connector.connect(host='localhost', user='root', password='', database='bot-saude')
 	cursor = db_connection.cursor()
 
-	sql = f'SELECT * FROM consultasDisponiveis WHERE ID = "{ID_disponivel}"'
+	sql = f'SELECT * FROM consultasDisponiveis WHERE ID = {ID_disponivel}'
 	cursor.execute(sql)
 	resultado = cursor.fetchall()
 
 	resultado = resultado[0]
 
 	ID, id_medico, data, horario, lugar_medico = resultado
-
-	sql = f'SELECT * FROM Consultas WHERE id_paciente={id_paciente}'
-	sql.execute(sql)
+	
+	sql = f'SELECT * FROM Consultas WHERE id_paciente = {id_paciente}'
+	cursor.execute(sql)
 	res = cursor.fetchall()
 
 	if res != '':
@@ -93,20 +93,25 @@ def cancelarConsulta(id):
 
 	resultado = consultasMarcadas(id)
 	res = resultado[1]
-
-	ID, id_paciente, id_medico, data_consult, horario, lugar_medico = res
-
-	if (id_paciente != id):
-		return 'ID incorreto'
+	res = res[0]
+	
+	if res == []:
+		return 'Não existe nenhuma consulta marcada. Em que posso ajudar?'
 	else:
-		sql = f'INSERT INTO consultasDisponiveis (ID, id_paciente, id_medico, data_consult, horario, lugar_medico) VALUES ({ID}, {id_paciente}, {id_medico}, "{data_consult}", "{horario}", "{lugar_medico}")'
-		cursor.execute(sql)
-
-		sql = f'DELETE FROM Consultas WHERE id_paciente = {id}' #adicionar um and, pegar o id do paciente e comparar
-		cursor.execute(sql)
-		print('deletado')
 		
-		return 'Consulta desmarcada com sucesso.' 
+		ID, id_paciente, id_medico, data_consult, horario, lugar_medico = res
+
+		if (id_paciente != id):
+			return 'ID incorreto'
+		else:
+			sql = f'INSERT INTO consultasDisponiveis (ID, id_medico, data_consult, horario, lugar_medico) VALUES ({ID}, {id_medico}, "{data_consult}", "{horario}", "{lugar_medico}")'
+			cursor.execute(sql)
+
+			sql = f'DELETE FROM Consultas WHERE id_paciente = {id}' #adicionar um and, pegar o id do paciente e comparar
+			cursor.execute(sql)
+			print('deletado')
+		
+			return 'Consulta desmarcada com sucesso.' 
 
 
 cursor.close()
