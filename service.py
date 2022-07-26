@@ -23,7 +23,7 @@ appflow = Flow.from_client_secrets_file(
 def home():
     auth_uri = appflow.authorization_url()
     print(auth_uri)
-
+    
     return render_template('/LandingPage/index.html')
 
 @app.route('/login')
@@ -72,6 +72,7 @@ def chat():
         elif retorno == 'consulta-marcar':
             retorno = connection.consultasDisponiveis()
             #Lembrar de retornar uma lista pra o ajax aq
+            
             
         elif (retorno[0] == 'marcar'):
             id = retorno[1]
