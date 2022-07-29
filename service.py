@@ -22,10 +22,6 @@ appflow = Flow.from_client_secrets_file(
 
 @app.route('/')
 def home():
-    #url = request.url
-    #values.url = url
-    
-    #print('values url: ', values.url)
      
     re = request.args.get('intention')
     if re == 'url':
