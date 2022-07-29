@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.code === "Enter") {
         let input = inputField.value;
         inputField.value = "";
-
+        
         $.ajax({
           url: "",
           type: "get",
@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
             input_text: input,
           },
           success: function (response) {
+            
             
             addChat(input, response);
             
@@ -24,44 +25,86 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
   function addChat(input, response) {
+    c = 0
+    /*
+    console.log(typeof response.res[0][0])
+    console.log('response inteira: ', response)
+    console.log('resp::: ', response.res[0][0]) //acessando certo!
+    */
 
-    console.log(typeof response.res)
-
-    
-    
-
-    
     const messagesContainer = document.getElementById("messages");
   
     let userDiv = document.createElement("div");
     userDiv.id = "user";
     userDiv.className = "user response";
-    userDiv.innerHTML = `<img src="/static/chatbot/user.png" class="avatar"><span>${input}</span>`;
+    userDiv.innerHTML = `<span>${input}</span><img src="/static/chatbot/user.png" class="avatar">`;
     messagesContainer.appendChild(userDiv);
-  
+    
+
     let botDiv = document.createElement("div");
     let botImg = document.createElement("img");
     let botText = document.createElement("span");
+
+
     botDiv.id = "bot";
     botImg.src = "static/chatbot/bot-mini.png";
     botImg.className = "avatar";
     botDiv.className = "bot response";
     botText.innerText = "Digitando...";
     
-    botDiv.appendChild(botText);
     botDiv.appendChild(botImg);
+    botDiv.appendChild(botText);
     messagesContainer.appendChild(botDiv);
-    
-    //let botList = document.createElement("ul")
 
+    console.log('tipo antes da condicao: ', typeof response.res[0][0]);
+
+    if (typeof response.res[0][0] == 'object') {
+        console.log('entrou!');
+        let list = document.createElement("ul");
+
+        for (i in response.res[0]) {
+            let item = document.createElement("li");
+            item.innerText = response.res[0][c]
+
+            list.appendChild(item)
+            c += 1;
+        }
+        messagesContainer.appendChild(list);
+        
+        console.log('ultimo:', response.res.at(-1));
+
+        messagesContainer.scrollTop = messagesContainer.scrollHeight - messagesContainer.clientHeight;
+        setTimeout(() => {   
+            botText.innerText = response.res.at(-1);
+            textToSpeech(response.res);
+        }, 2000);
+    
+    }
+    else {
+        console.log('elsee ae')
+        // Keep messages at most recent
+        messagesContainer.scrollTop = messagesContainer.scrollHeight - messagesContainer.clientHeight;
+    
+        // Fake delay to seem "real"
+        setTimeout(() => {   
+            botText.innerText = response.res;
+            textToSpeech(response.res);
+        }, 2000);
+    }
+    
+    
+
+    /*
     // Keep messages at most recent
     messagesContainer.scrollTop = messagesContainer.scrollHeight - messagesContainer.clientHeight;
     
     // Fake delay to seem "real"
     setTimeout(() => {
-      botText.innerText = `${response.res}`;
+      
+      botText.innerText = response.res;
       textToSpeech(response.res);
     }, 2000);
+    */
   }
 
 

@@ -95,3 +95,13 @@ input {
 		margin: 10vw;
 	}
 }
+
+ul {
+list-style: none;
+}
+
+ul li:before {
+content: '\2022';
+margin: 0 2px;
+color: #1a1ef3; /* cor da bolinha */
+}

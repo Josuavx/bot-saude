@@ -21,8 +21,13 @@ appflow = Flow.from_client_secrets_file(
 
 @app.route('/')  # , methods=['POST'])
 def home():
-    auth_uri = appflow.authorization_url()
-    print(auth_uri)
+    
+    re = request.args.get('intention')
+    if re == 'url':
+        print('request texto: ', re)
+        auth_uri = appflow.authorization_url()
+        print(auth_uri)
+        return {'res': auth_uri[0]}
     
     return render_template('/LandingPage/index.html')
 
@@ -63,15 +68,14 @@ def chat():
             senha = retorno[2]
             
             retorno = connection.validarLogin(email, senha)
-
-            res = retorno[1]
-            values.email = res[0]
-            values.id = res[1]
+            if type(retorno) == 'list':
+                res = retorno[1]
+                values.email = res[0]
+                values.id = res[1]
             
-            retorno = retorno[0]
+                retorno = retorno[0]
         elif retorno == 'consulta-marcar':
             retorno = connection.consultasDisponiveis()
-            #Lembrar de retornar uma lista pra o ajax aq
             
             
         elif (retorno[0] == 'marcar'):
@@ -84,12 +88,11 @@ def chat():
 
         elif (retorno == 'cancelar'):
             retorno = connection.cancelarConsulta(values.id)
-
+        
         return {'res': retorno}
 
         
     return render_template('/chatbot/index.html')
-
 
 """
     # Enviar um valor via AJAX

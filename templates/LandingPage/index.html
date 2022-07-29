@@ -9,6 +9,8 @@
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='LandingPage/style.css') }}">
 </head>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
 <body>
   <header class="cabecalho">
     <img class="cabecalho-imagem" src="{{ url_for('static', filename='LandingPage/logo.png') }}" alt="">
@@ -24,7 +26,7 @@
       <div class="conteudo-principal-escrito">
         <h1 class="conteudo-principal-escrito-titulo">Bem Vindo</h1>
         <h2 class="conteudo-principal-escrito-subtitulo">Marque sua consulta com nosso Chatbot e veja a praticidade de nosso atendimento.</h2>
-        <button class="conteudo-principal-escrito-botao" onclick="window.location.href = 'http://localhost:5000/login'">Chatbot</button>
+        <button class="conteudo-principal-escrito-botao" onclick="Redirect()">Chatbot</button>
       </div>
       <img class="conteudo-principal-imagem"src="{{ url_for('static', filename='LandingPage/content.png') }}" alt="">
     </section>
@@ -51,5 +53,7 @@
     <img class="rodape-imagem" src="{{ url_for('static', filename='LandingPage/nutes.png') }}">
   </footer>
 </body>
+
+<script type="text/javascript" src="{{ url_for('static', filename='LandingPage/main.js') }}" ></script>
 
 </html>

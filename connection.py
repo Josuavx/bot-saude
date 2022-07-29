@@ -26,7 +26,25 @@ def consultasDisponiveis():
 	cursor.execute(sql)
 	resultado = cursor.fetchall()
 
+	print("tipo da v:", type(resultado[0]))
+	#13,3,23/07/2022,15:45,Avenida Agamenon Magalhaes, 30
 	
+	print('antes: ', resultado)
+	novaLista = []
+
+	for i in resultado:
+		ID, id_medico, data_consult, horario, lugar_medico, = i
+
+		id_medico = nomeador(id_medico)
+		ID = str(ID)
+
+		texto = ('ID: ' + ID + ', Medico: ' + id_medico +', ás ' + data_consult, horario, lugar_medico)
+		
+		novaLista.append(texto)
+	
+	resultado = novaLista
+	print('depois: ', type(resultado))
+	print('olha ele ae: ', resultado)
 	return (resultado, 'Digite o ID da consulta que gostaria de marcar: ')
 
 def marcarConsulta(ID_disponivel, id_paciente):
@@ -45,7 +63,11 @@ def marcarConsulta(ID_disponivel, id_paciente):
 	cursor.execute(sql)
 	res = cursor.fetchall()
 
-	if res != '':
+	print('id paciente: ', id_paciente)
+	print('res: ', res)
+
+
+	if res == []:
 		sql = f'INSERT INTO Consultas (ID, id_paciente, id_medico, data_consult, horario, lugar_medico) VALUES ({ID}, {id_paciente}, {id_medico}, "{data}", "{horario}", "{lugar_medico}")'
 		cursor.execute(sql)
 		
@@ -67,7 +89,7 @@ def validarLogin(email, senha):
 	resultado = cursor.fetchall()
 	
 
-	if resultado == None:
+	if resultado == []:
 		return 'Conta não encontrada. Gostaria de tentar entrar novamente?'
 	else:
 		res = resultado[0]
@@ -117,7 +139,7 @@ def cancelarConsulta(id):
 			sql = f'INSERT INTO consultasDisponiveis (ID, id_medico, data_consult, horario, lugar_medico) VALUES ({ID}, {id_medico}, "{data_consult}", "{horario}", "{lugar_medico}")'
 			cursor.execute(sql)
 
-			sql = f'DELETE FROM Consultas WHERE id_paciente = {id}' 
+			sql = f'DELETE FROM Consultas WHERE id_paciente = {id_paciente}' 
 			cursor.execute(sql)
 			
 		
