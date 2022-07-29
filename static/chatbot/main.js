@@ -26,11 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
   function addChat(input, response) {
     c = 0
-    /*
-    console.log(typeof response.res[0][0])
-    console.log('response inteira: ', response)
-    console.log('resp::: ', response.res[0][0]) //acessando certo!
-    */
 
     const messagesContainer = document.getElementById("messages");
   

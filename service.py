@@ -9,22 +9,27 @@ class values:
     token = ""
     email = ""
     id = ""
+    url = ""
 
 app = Flask(__name__)
 appflow = Flow.from_client_secrets_file(
     'client_secret.json',
     scopes=['openid', 'https://www.googleapis.com/auth/dialogflow',
             'https://www.googleapis.com/auth/cloud-platform'],
-    redirect_uri='http://127.0.0.1:5000/login')  # Aqui tá redirecionando apos o login com google pra pasta padrao
+    redirect_uri= 'http://127.0.0.1:5000/login')  # Aqui tá redirecionando apos o login com google pra pasta padrao
 
 
 
-@app.route('/')  # , methods=['POST'])
+@app.route('/')
 def home():
+    #url = request.url
+    #values.url = url
     
+    #print('values url: ', values.url)
+     
     re = request.args.get('intention')
     if re == 'url':
-        print('request texto: ', re)
+
         auth_uri = appflow.authorization_url()
         print(auth_uri)
         return {'res': auth_uri[0]}
@@ -35,7 +40,7 @@ def home():
 def login():
 
     code = request.args.get('code')
-    print(code)
+
     appflow.fetch_token(code=code)
     credentials = appflow.credentials
     values.token = credentials.token
@@ -50,10 +55,7 @@ def chat():
         credencial = values.token
 
         retorno = main.Conversa(credencial, text)
-
-        print('retorno: ', retorno)
         
-        #Cadastro
         if retorno[0] == 'cadastro':
             nome = retorno[1]
             senha = retorno[2]
@@ -68,12 +70,19 @@ def chat():
             senha = retorno[2]
             
             retorno = connection.validarLogin(email, senha)
-            if type(retorno) == 'list':
+            
+  
+            
+            tipo = type(retorno)
+            if tipo == tuple:
+                
                 res = retorno[1]
                 values.email = res[0]
                 values.id = res[1]
-            
-                retorno = retorno[0]
+           
+            retorno = retorno[0]
+         
+
         elif retorno == 'consulta-marcar':
             retorno = connection.consultasDisponiveis()
             
@@ -84,7 +93,7 @@ def chat():
         
         elif retorno == 'visualizar-consultas':
             retorno = connection.consultasMarcadas(values.id)
-            #retorno = retorno[0]
+            
 
         elif (retorno == 'cancelar'):
             retorno = connection.cancelarConsulta(values.id)
@@ -94,21 +103,6 @@ def chat():
         
     return render_template('/chatbot/index.html')
 
-"""
-    # Enviar um valor via AJAX
-    if request.is_json:
-        nome = 'josue'
-        return jsonify({'nome': nome})
-
-    return render_template('/chatbot/index.html')
-
-    # Pegando dados de um botão
-    text = request.args.get('button_text')
-    print('\n')
-    print('Button text:', text)
-    print('\n')
-    return render_template('/chatbot/index.html')
-"""
 
 # run Flask app
 if __name__ == "__main__":

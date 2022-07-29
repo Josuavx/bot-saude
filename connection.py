@@ -1,6 +1,6 @@
 import mysql.connector
 
-#CREATE
+
 
 db_connection = mysql.connector.connect(host='localhost', user='root', password='', database='bot-saude')
 cursor = db_connection.cursor()
@@ -25,11 +25,7 @@ def consultasDisponiveis():
 	sql = 'SELECT * FROM consultasDisponiveis'
 	cursor.execute(sql)
 	resultado = cursor.fetchall()
-
-	print("tipo da v:", type(resultado[0]))
-	#13,3,23/07/2022,15:45,Avenida Agamenon Magalhaes, 30
 	
-	print('antes: ', resultado)
 	novaLista = []
 
 	for i in resultado:
@@ -43,14 +39,12 @@ def consultasDisponiveis():
 		novaLista.append(texto)
 	
 	resultado = novaLista
-	print('depois: ', type(resultado))
-	print('olha ele ae: ', resultado)
 	return (resultado, 'Digite o ID da consulta que gostaria de marcar: ')
 
 def marcarConsulta(ID_disponivel, id_paciente):
 	db_connection = mysql.connector.connect(host='localhost', user='root', password='', database='bot-saude')
 	cursor = db_connection.cursor()
-
+	
 	sql = f'SELECT * FROM consultasDisponiveis WHERE ID = {ID_disponivel}'
 	cursor.execute(sql)
 	resultado = cursor.fetchall()
@@ -59,18 +53,14 @@ def marcarConsulta(ID_disponivel, id_paciente):
 
 	ID, id_medico, data, horario, lugar_medico = resultado
 	
-	sql = f'SELECT * FROM Consultas WHERE id_paciente = {id_paciente}'
+	sql = f'SELECT * FROM Consultas WHERE id_paciente = "{id_paciente}"'
 	cursor.execute(sql)
 	res = cursor.fetchall()
-
-	print('id paciente: ', id_paciente)
-	print('res: ', res)
-
 
 	if res == []:
 		sql = f'INSERT INTO Consultas (ID, id_paciente, id_medico, data_consult, horario, lugar_medico) VALUES ({ID}, {id_paciente}, {id_medico}, "{data}", "{horario}", "{lugar_medico}")'
 		cursor.execute(sql)
-		
+
 		sql = f'DELETE FROM consultasDisponiveis WHERE ID = {ID_disponivel}'
 		cursor.execute(sql)
 	else:
@@ -78,7 +68,7 @@ def marcarConsulta(ID_disponivel, id_paciente):
 
 	return 'Consulta marcada com sucesso! No dia de sua consulta, compareça com um documento com foto.'
 
-#READ
+
 def validarLogin(email, senha):
 	db_connection = mysql.connector.connect(host='localhost', user='root', password='', database='bot-saude')
 	cursor = db_connection.cursor()
@@ -94,7 +84,7 @@ def validarLogin(email, senha):
 	else:
 		res = resultado[0]
 		id, nome, senha, idade, email = res
-		retorno = ('Logado com sucesso. No que posso te ajudar? (Marcar consultas, Visualizar consultas marcadas, Desmarcar consultas', (email, id))
+		retorno = ('Logado com sucesso. No que posso te ajudar? (Marcar consultas, Visualizar consultas marcadas, Desmarcar consultas)', (email, id))
 		
 		return retorno
 
@@ -102,8 +92,7 @@ def consultasMarcadas(id):
 	db_connection = mysql.connector.connect(host='localhost', user='root', password='', database='bot-saude')
 	cursor = db_connection.cursor()
 
-	sql = f'SELECT * FROM Consultas WHERE id_paciente = {id}'
-	
+	sql = f'SELECT * FROM Consultas WHERE id_paciente = "{id}"'
 	cursor.execute(sql)
 	resultado = cursor.fetchall()
 	
