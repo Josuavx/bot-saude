@@ -2,11 +2,11 @@ import mysql.connector
 
 
 
-db_connection = mysql.connector.connect(host='localhost', user='root', password='', database='bot-saude')
+db_connection = mysql.connector.connect(host='us-cdbr-east-06.cleardb.net', user='b31379e16e9f3e', password='28a8eb15', database='heroku_2a3330c61737e3a')
 cursor = db_connection.cursor()
 
 def cadastro(nome, senha, idade, email):
-	db_connection = mysql.connector.connect(host='localhost', user='root', password='', database='bot-saude')
+	db_connection = mysql.connector.connect(host='us-cdbr-east-06.cleardb.net', user='b31379e16e9f3e', password='28a8eb15', database='heroku_2a3330c61737e3a')
 	cursor = db_connection.cursor()
 
 	id = 'DEFAULT'
@@ -19,7 +19,7 @@ def cadastro(nome, senha, idade, email):
 
 def consultasDisponiveis():
 	
-	db_connection = mysql.connector.connect(host='localhost', user='root', password='', database='bot-saude')
+	db_connection = mysql.connector.connect(host='us-cdbr-east-06.cleardb.net', user='b31379e16e9f3e', password='28a8eb15', database='heroku_2a3330c61737e3a')
 	cursor = db_connection.cursor()
 
 	sql = 'SELECT * FROM consultasDisponiveis'
@@ -42,7 +42,7 @@ def consultasDisponiveis():
 	return (resultado, 'Digite o ID da consulta que gostaria de marcar: ')
 
 def marcarConsulta(ID_disponivel, id_paciente):
-	db_connection = mysql.connector.connect(host='localhost', user='root', password='', database='bot-saude')
+	db_connection = mysql.connector.connect(host='us-cdbr-east-06.cleardb.net', user='b31379e16e9f3e', password='28a8eb15', database='heroku_2a3330c61737e3a')
 	cursor = db_connection.cursor()
 	
 	sql = f'SELECT * FROM consultasDisponiveis WHERE ID = {ID_disponivel}'
@@ -70,7 +70,7 @@ def marcarConsulta(ID_disponivel, id_paciente):
 
 
 def validarLogin(email, senha):
-	db_connection = mysql.connector.connect(host='localhost', user='root', password='', database='bot-saude')
+	db_connection = mysql.connector.connect(host='us-cdbr-east-06.cleardb.net', user='b31379e16e9f3e', password='28a8eb15', database='heroku_2a3330c61737e3a')
 	cursor = db_connection.cursor()
 
 
@@ -89,7 +89,7 @@ def validarLogin(email, senha):
 		return retorno
 
 def consultasMarcadas(id):
-	db_connection = mysql.connector.connect(host='localhost', user='root', password='', database='bot-saude')
+	db_connection = mysql.connector.connect(host='us-cdbr-east-06.cleardb.net', user='b31379e16e9f3e', password='28a8eb15', database='heroku_2a3330c61737e3a')
 	cursor = db_connection.cursor()
 
 	sql = f'SELECT * FROM Consultas WHERE id_paciente = "{id}"'
@@ -107,7 +107,7 @@ def consultasMarcadas(id):
 		return ('Você não tem consultas marcadas no momento. No que mais posso te ajudar?')
 
 def cancelarConsulta(id):
-	db_connection = mysql.connector.connect(host='localhost', user='root', password='', database='bot-saude')
+	db_connection = mysql.connector.connect(host='us-cdbr-east-06.cleardb.net', user='b31379e16e9f3e', password='28a8eb15', database='heroku_2a3330c61737e3a')
 	cursor = db_connection.cursor()
 
 	sql = f'SELECT * FROM Consultas WHERE id_paciente = {id}'
