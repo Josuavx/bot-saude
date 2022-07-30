@@ -20,7 +20,7 @@ appflow = Flow.from_client_secrets_file(
 
 
 
-@app.route('/')
+@app.route("/")
 def home():
      
     re = request.args.get('intention')
@@ -32,7 +32,7 @@ def home():
     
     return render_template('/LandingPage/index.html')
 
-@app.route('/login')
+@app.route("/login")
 def login():
 
     code = request.args.get('code')
@@ -44,7 +44,7 @@ def login():
     return render_template('login.html')
 
 #Recebe requisições do front (manipula, responde)
-@app.route('/chatbot')
+@app.route("/chatbot")
 def chat():
     if request.is_json:
         text = request.args.get('input_text')
