@@ -13,7 +13,7 @@ def Google():
         redirect_uri='http://127.0.0.1:5000/login') #Aqui tá redirecionando apos o login com google pra pasta padrao
 
     auth_uri = appflow.authorization_url()
-    print(auth_uri)
+    
     
     code = input('digite: ')
     appflow.fetch_token(code=code)

@@ -25,9 +25,8 @@ def home():
      
     re = request.args.get('intention')
     if re == 'url':
-
         auth_uri = appflow.authorization_url()
-        print(auth_uri)
+
         return {'res': auth_uri[0]}
     
     return render_template('/LandingPage/index.html')
@@ -52,47 +51,42 @@ def chat():
 
         retorno = main.Conversa(credencial, text)
         
-        if retorno[0] == 'cadastro':
-            nome = retorno[1]
-            senha = retorno[2]
-            idade = retorno[3]
-            email = retorno[4]
-
-            retorno = connection.cadastro(nome, senha, idade, email)
-
-        elif (retorno[0] == 'login'):
-            
-            email = retorno[1]
-            senha = retorno[2]
-            
-            retorno = connection.validarLogin(email, senha)
-            
-  
-            
-            tipo = type(retorno)
-            if tipo == tuple:
-                
-                res = retorno[1]
-                values.email = res[0]
-                values.id = res[1]
-           
-            retorno = retorno[0]
-         
-
-        elif retorno == 'consulta-marcar':
-            retorno = connection.consultasDisponiveis()
-            
-            
-        elif (retorno[0] == 'marcar'):
-            id = retorno[1]
-            retorno = connection.marcarConsulta(id, values.id)
         
-        elif retorno == 'visualizar-consultas':
-            retorno = connection.consultasMarcadas(values.id)
-            
+        if type(retorno) == list:
+            if retorno[0] == 'cadastro':
+                nome = retorno[1]
+                senha = retorno[2]
+                idade = retorno[3]
+                email = retorno[4]
 
-        elif (retorno == 'cancelar'):
-            retorno = connection.cancelarConsulta(values.id)
+                retorno = connection.cadastro(nome, senha, idade, email)
+            
+            elif (retorno[0] == 'marcar'):
+                id = retorno[1]
+                retorno = connection.marcarConsulta(id, values.id)
+
+            elif (retorno[0] == 'login'):
+                email = retorno[1]
+                senha = retorno[2]
+            
+                retorno = connection.validarLogin(email, senha)
+            
+                if type(retorno) == tuple:
+                    res = retorno[1]
+                    values.email = res[0]
+                    values.id = res[1]
+        
+                retorno = retorno[0]
+
+        else:
+            if retorno == 'consulta-marcar':
+                retorno = connection.consultasDisponiveis()
+            
+            elif retorno == 'visualizar-consultas':
+                retorno = connection.consultasMarcadas(values.id)
+            
+            elif (retorno == 'cancelar'):
+                retorno = connection.cancelarConsulta(values.id)
         
         return {'res': retorno}
 
