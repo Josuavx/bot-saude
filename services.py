@@ -54,8 +54,8 @@ def chat():
 
         retorno = main.Conversa(credencial, text)
         
-        
-        if type(retorno) == list:
+        tip = type(retorno)
+        if tip == list:
             if retorno[0] == 'cadastro':
                 nome = retorno[1]
                 senha = retorno[2]
@@ -73,8 +73,8 @@ def chat():
                 senha = retorno[2]
             
                 retorno = connection.validarLogin(email, senha)
-            
-                if type(retorno) == tuple:
+                tip = type(retorno)
+                if tip == tuple:
                     res = retorno[1]
                     values.email = res[0]
                     values.id = res[1]
