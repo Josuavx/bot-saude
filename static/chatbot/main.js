@@ -13,11 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
             input_text: input,
           },
           success: function (response) {
-            
-            
+            console.log(response)
+            console.log(typeof response)
             addChat(input, response);
-            
-            
           }
         })
       }
@@ -52,6 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
     messagesContainer.appendChild(botDiv);
 
     
+    console.log('já dentro: ', response)
+    console.log('acessando res: ', response.res)
+    console.log('acessando o primeiro elemento: ', response.res[0])
+    console.log('acessando o segundo el: ', response.res[0][0])
 
     if (typeof response.res[0][0] == 'object') {
         
