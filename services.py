@@ -97,7 +97,7 @@ def chat():
     return render_template('/chatbot/index.html')
 
 
-# run Flask app
+
 if __name__ == "__main__":
-    # app.debug = False
+    app.debug = False
     app.run()

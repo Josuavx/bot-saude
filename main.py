@@ -5,26 +5,8 @@ from utils import CONST
 import json
 import time
 
-def Google():
-    appflow = Flow.from_client_secrets_file(
-        'client_secret.json',
-        scopes=['openid', 'https://www.googleapis.com/auth/dialogflow',
-                'https://www.googleapis.com/auth/cloud-platform'],
-        redirect_uri='http://127.0.0.1:5000/login') #Aqui tá redirecionando apos o login com google pra pasta padrao
 
-    auth_uri = appflow.authorization_url()
-    
-    
-    code = input('digite: ')
-    appflow.fetch_token(code=code)
-    credencial = appflow.credentials
-
-    return credencial #auth_uri
-
-
-def Conversa(credencial, txt): #receber txt como
-#while(True):
-    #txt = input("Mensagem: ")
+def Conversa(credencial, txt):
     payload = payload = {
         "queryParams": {
             "source": "DIALOGFLOW_CONSOLE",

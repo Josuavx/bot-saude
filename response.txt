@@ -1,3 +1,4 @@
+#Resposta do bot
 {
     "responseId": "7b6555ca-c528-4efe-a1bb-599347ec9a7d-aebbc26f",
     "queryResult": {

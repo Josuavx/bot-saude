@@ -1,10 +1,5 @@
 import mysql.connector
 
-
-
-db_connection = mysql.connector.connect(host='us-cdbr-east-06.cleardb.net', user='b31379e16e9f3e', password='28a8eb15', database='heroku_2a3330c61737e3a')
-cursor = db_connection.cursor()
-
 def cadastro(nome, senha, idade, email):
 	db_connection = mysql.connector.connect(host='us-cdbr-east-06.cleardb.net', user='b31379e16e9f3e', password='28a8eb15', database='heroku_2a3330c61737e3a')
 	cursor = db_connection.cursor()
@@ -144,7 +139,3 @@ def nomeador(id_medico):
 		id_medico = 'Dr. Carlos Alfandega Silva'
 	return id_medico
 
-
-
-cursor.close()
-db_connection.close()
