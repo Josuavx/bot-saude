@@ -11,11 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
           contentType: "application/json",
           data: {
             input_text: input,
-          },
-          success: function (response) {
-            
-            addChat(input, response);
           }
+        }).done (function (response) {
+          addChat(input, response);
         })
       }
     });
