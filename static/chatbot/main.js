@@ -48,7 +48,14 @@ document.addEventListener("DOMContentLoaded", () => {
     botDiv.appendChild(botText);
     messagesContainer.appendChild(botDiv);
 
-    
+    messagesContainer.scrollTop = messagesContainer.scrollHeight - messagesContainer.clientHeight;
+  
+    // Fake delay to seem "real"
+    setTimeout(() => {
+      
+      botText.innerText = response.res;
+      //textToSpeech(response.res);
+    }, 2000);
     
     /*
     if (typeof response.res[0][0] == 'object') {
@@ -76,13 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
     else {
       */  
       // Keep messages at most recent
-      messagesContainer.scrollTop = messagesContainer.scrollHeight - messagesContainer.clientHeight;
-  
-      // Fake delay to seem "real"
-      setTimeout(() => {   
-          botText.innerText = response.res;
-          
-          //textToSpeech(response.res);
-      }, 2000);
+      
    //}   
 }
