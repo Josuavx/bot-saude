@@ -46,7 +46,7 @@ def login():
     return render_template('login.html')
 
 #Recebe requisições do front (manipula, responde)
-@app.route('/chatbot')
+@app.route('/chatbot', methods= ['GET', 'POST'])
 def chat():
     if request.is_json:
         text = request.args.get('input_text')
