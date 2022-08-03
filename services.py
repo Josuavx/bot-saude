@@ -19,7 +19,7 @@ appflow = Flow.from_client_secrets_file(
     'client_secret.json',
     scopes=['openid', 'https://www.googleapis.com/auth/dialogflow',
             'https://www.googleapis.com/auth/cloud-platform'],
-    redirect_uri= 'http://localhost:5000/login')  # Aqui tá redirecionando apos o login com google pra pasta padrao
+    redirect_uri= 'https://dr-freud.herokuapp.com/login')  # Aqui tá redirecionando apos o login com google pra pasta padrao
 
 
 
