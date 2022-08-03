@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     
     
-
+    /*
     if (typeof response.res[0][0] == 'object') {
         
         let list = document.createElement("ul");
@@ -74,15 +74,15 @@ document.addEventListener("DOMContentLoaded", () => {
     
     }
     else {
-        
-        // Keep messages at most recent
-        messagesContainer.scrollTop = messagesContainer.scrollHeight - messagesContainer.clientHeight;
-    
-        // Fake delay to seem "real"
-        setTimeout(() => {   
-            botText.innerText = response.res;
-            
-            //textToSpeech(response.res);
-        }, 2000);
-    }   
+      */  
+      // Keep messages at most recent
+      messagesContainer.scrollTop = messagesContainer.scrollHeight - messagesContainer.clientHeight;
+  
+      // Fake delay to seem "real"
+      setTimeout(() => {   
+          botText.innerText = response.res;
+          
+          //textToSpeech(response.res);
+      }, 2000);
+   //}   
 }
