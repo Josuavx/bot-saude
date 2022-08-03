@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Fake delay to seem "real"
         setTimeout(() => {   
             botText.innerText = response.res;
-            console.log('vai passar agr2:')
+            
             //textToSpeech(response.res);
         }, 2000);
     }   
