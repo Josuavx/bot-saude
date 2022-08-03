@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       
       botText.innerText = response.res;
-      //textToSpeech(response.res);
+      textToSpeech(response.res);
     }, 2000);
     
     /*
