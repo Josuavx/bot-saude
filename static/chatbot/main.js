@@ -69,7 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
         messagesContainer.scrollTop = messagesContainer.scrollHeight - messagesContainer.clientHeight;
         setTimeout(() => {   
             botText.innerText = response.res.at(-1);
-            textToSpeech(response.res);
+            console.log('vai passar agr1:')
+            
         }, 2000);
     
     }
@@ -81,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Fake delay to seem "real"
         setTimeout(() => {   
             botText.innerText = response.res;
+            console.log('vai passar agr2:')
             textToSpeech(response.res);
         }, 2000);
     }   
