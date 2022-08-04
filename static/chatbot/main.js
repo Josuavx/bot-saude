@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         inputField.value = "";
         
         $.ajax({
-          url: './services',
+          url: '',
           type: 'GET',
           contentType: 'application/json',
           dataType: 'JSON',
