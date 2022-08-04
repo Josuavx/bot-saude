@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         inputField.value = "";
         
         $.ajax({
-          url: "",
+          url: "dr-freud.herokuapp.com/services.py",
           type: "get",
           contentType: "application/json",
           data: {
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }).done (function (response) {
           addChat(input, response);
-        })
+        }).fail(console.log("Falhou!"))
       }
     });
   });
