@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
         inputField.value = "";
         
         $.ajax({
-          url: "services.py",
-          type: "get",
+          url: "",
+          type: "post",
           contentType: "application/json",
           data: {
             input_text: input,
