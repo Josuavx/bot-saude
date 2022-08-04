@@ -53,7 +53,7 @@ def chat():
         credencial = values.token
 
         retorno = main.Conversa(credencial, text)
-        
+        """
         tip = type(retorno)
         if tip == list:
             if retorno[0] == 'cadastro':
@@ -90,7 +90,7 @@ def chat():
             
             elif (retorno == 'cancelar'):
                 retorno = connection.cancelarConsulta(values.id)
-            
+        """    
         return {'res': retorno}
     
         
