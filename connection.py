@@ -105,7 +105,7 @@ def cancelarConsulta(id):
 	db_connection = mysql.connector.connect(host='us-cdbr-east-06.cleardb.net', user='b31379e16e9f3e', password='28a8eb15', database='heroku_2a3330c61737e3a')
 	cursor = db_connection.cursor()
 
-	sql = f'SELECT * FROM Consultas WHERE id_paciente = {id}'
+	sql = f'SELECT * FROM Consultas WHERE id_paciente = "{id}"'
 	cursor.execute(sql)
 	resultado = cursor.fetchall()
 
