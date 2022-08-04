@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
           success: function(response){
             console.log('req antes: ', response)
             alert(response);
-            //addChat(input, response.res);
+            addChat(input, response.res);
             console.log('req depois: ', response)
           }
         })
