@@ -15,8 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
           },
           success: function(response){
             console.log('req antes: ', response)
-            addChat(input, response.res);
+            alert(response);
+            //addChat(input, response.res);
             console.log('req depois: ', response)
+          },
+          error: function(jqXHR, textStatus){
+            alert("Status: "+ jqXHR.status);
+            alert("textStatus: "+ textStatus);
           }
         })
       }
