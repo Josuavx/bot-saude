@@ -54,7 +54,7 @@ def chat():
         credencial = values.token
 
         retorno = main.Conversa(credencial, text)
-        time.sleep(40)
+        
         tip = type(retorno)
         if tip == list:
             if retorno[0] == 'cadastro':

@@ -41,6 +41,7 @@ def Conversa(credencial, txt):
         else:
             re = contagem = resp_message[0]['text']['text'][0]
         
+        time.sleep(20)
         
         return re
 
