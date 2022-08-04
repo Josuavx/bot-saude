@@ -43,5 +43,5 @@ def Conversa(credencial, txt):
         
         
         
-        return re
+        return {'re': re, 'r':'rrr'}
 
