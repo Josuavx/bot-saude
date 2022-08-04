@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         inputField.value = "";
         
         $.ajax({
-          url: "dr-freud.herokuapp.com/services.py",
+          url: "services.py",
           type: "get",
           contentType: "application/json",
           data: {
