@@ -5,6 +5,7 @@ from google_auth_oauthlib.flow import Flow
 from flask import Flask, request, jsonify, render_template
 import sys
 import logging
+import time
 
 class values:
     token = ""
@@ -53,7 +54,7 @@ def chat():
         credencial = values.token
 
         retorno = main.Conversa(credencial, text)
-        
+        time.sleep(40)
         tip = type(retorno)
         if tip == list:
             if retorno[0] == 'cadastro':
