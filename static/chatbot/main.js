@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         messagesContainer.scrollTop = messagesContainer.scrollHeight - messagesContainer.clientHeight;
         setTimeout(() => {   
-            botText.innerText = response.res.at(-1);
+            botText.innerText = response.at(-1);
             //textToSpeech(response.res);
         }, 2000);
     
