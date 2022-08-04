@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
         inputField.value = "";
         
         $.ajax({
-          url: "",
-          type: "get",
+          url: "/chatbot",
+          type: "post",
           contentType: "application/json",
           data: {
             input_text: input,

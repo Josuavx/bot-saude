@@ -3,8 +3,8 @@ import connection
 import main
 from google_auth_oauthlib.flow import Flow
 from flask import Flask, request, jsonify, render_template
-import sys
-import logging
+#import sys
+#import logging
 
 class values:
     token = ""
@@ -13,8 +13,8 @@ class values:
     url = ""
 
 app = Flask(__name__)
-app.logger.addHandler(logging.StreamHandler(sys.stdout))
-app.logger.setLevel(logging.ERROR)
+#app.logger.addHandler(logging.StreamHandler(sys.stdout))
+#app.logger.setLevel(logging.ERROR)
 appflow = Flow.from_client_secrets_file(
     'client_secret.json',
     scopes=['openid', 'https://www.googleapis.com/auth/dialogflow',
