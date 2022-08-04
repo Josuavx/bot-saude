@@ -55,46 +55,46 @@ def chat():
 
         retorno = main.Conversa(credencial, text)
         
-        #tip = type(retorno)
-        #if tip == list:
-        if retorno[0] == 'cadastro':
-            nome = retorno[1]
-            senha = retorno[2]
-            idade = retorno[3]
-            email = retorno[4]
+        tip = type(retorno)
+        if tip == list:
+            if retorno[0] == 'cadastro':
+                nome = retorno[1]
+                senha = retorno[2]
+                idade = retorno[3]
+                email = retorno[4]
 
-            retorno = connection.cadastro(nome, senha, idade, email)
-        
-        elif (retorno[0] == 'marcar'):
-            id = retorno[1]
-            retorno = connection.marcarConsulta(id, values.id)
+                retorno = connection.cadastro(nome, senha, idade, email)
+            
+            elif (retorno[0] == 'marcar'):
+                id = retorno[1]
+                retorno = connection.marcarConsulta(id, values.id)
 
-        elif (retorno[0] == 'login'):
-            email = retorno[1]
-            senha = retorno[2]
+            elif (retorno[0] == 'login'):
+                email = retorno[1]
+                senha = retorno[2]
+            
+                retorno = connection.validarLogin(email, senha)
+                tip = type(retorno)
+                if tip == tuple:
+                    res = retorno[1]
+                    values.email = res[0]
+                    values.id = res[1]
         
-            retorno = connection.validarLogin(email, senha)
-            tip = type(retorno)
-            if tip == tuple:
-                res = retorno[1]
-                values.email = res[0]
-                values.id = res[1]
-    
-            retorno = retorno[0]
+                retorno = retorno[0]
 
-        #else:
-        if retorno == 'consulta-marcar':
-            retorno = connection.consultasDisponiveis()
+        else:
+            if retorno == 'consulta-marcar':
+                retorno = connection.consultasDisponiveis()
+            
+            elif retorno == 'visualizar-consultas':
+                retorno = connection.consultasMarcadas(values.id)
+            
+            elif (retorno == 'cancelar'):
+                retorno = connection.cancelarConsulta(values.id)
         
-        elif retorno == 'visualizar-consultas':
-            retorno = connection.consultasMarcadas(values.id)
-        
-        elif (retorno == 'cancelar'):
-            retorno = connection.cancelarConsulta(values.id)
-    
 
         if retorno != None:
-            return {'pes': retorno}
+            return {'res': retorno}
         else: return 'falhou?'
         
     return render_template('/chatbot/index.html')
