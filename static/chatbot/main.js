@@ -11,10 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
           contentType: 'application/json',
           data: {
             input_text: input,
+          },
+          success: function(response){
+            console.log('req antes: ', response)
+            addChat(input, response.res);
+            console.log('req depois: ', response)
           }
-        }).done (function (response) {
-          addChat(input, response);
-        }).fail(console.log("Falhou!"))
+        })
       }
     });
   });
@@ -49,13 +52,13 @@ document.addEventListener("DOMContentLoaded", () => {
     
     
     console.log('chegou condição: ', response)
-    if (typeof response.res[0][0] == 'object') {
+    if (typeof response[0][0] == 'object') {
         console.log('1')
         let list = document.createElement("ul");
 
-        for (i in response.res[0]) {
+        for (i in response[0]) {
             let item = document.createElement("li");
-            item.innerText = response.res[0][c]
+            item.innerText = response[0][c]
 
             list.appendChild(item)
             c += 1;
@@ -78,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
         // Fake delay to seem "real"
         setTimeout(() => {   
-            botText.innerText = response.res;
+            botText.innerText = response;
             
             //textToSpeech(response.res);
         }, 2000);
