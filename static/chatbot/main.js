@@ -9,13 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
           url: '',
           type: 'GET',
           contentType: '',
-          data: JSON.stringify({
+          data: {
             input_text: input,
-          }),
+          },
           success: function(response){
-            alert(response);
+            
             addChat(input, response.res);
-            console.log('req depois: ', response)
+            
           }
         })
       }
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     console.log('chegou condição: ', response)
     if (typeof response[0][0] == 'object') {
-        console.log('1')
+        
         let list = document.createElement("ul");
 
         for (i in response[0]) {
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     }
     else {
-        console.log('2')
+        
         // Keep messages at most recent
         messagesContainer.scrollTop = messagesContainer.scrollHeight - messagesContainer.clientHeight;
     

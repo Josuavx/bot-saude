@@ -108,13 +108,12 @@ def cancelarConsulta(id):
 	sql = f'SELECT * FROM Consultas WHERE id_paciente = "{id}"'
 	cursor.execute(sql)
 	resultado = cursor.fetchall()
-
-	res = resultado[0]
 	
 	if res == []:
 		return 'Não existe nenhuma consulta marcada. Em que posso ajudar?'
 	else:
-		
+		res = resultado[0]
+
 		ID, id_paciente, id_medico, data_consult, horario, lugar_medico = res
 
 		if (id_paciente != id):
@@ -127,7 +126,7 @@ def cancelarConsulta(id):
 			cursor.execute(sql)
 			
 		
-			return 'Consulta desmarcada com sucesso.' 
+			return 'Consulta desmarcada com sucesso. No que mais posso te ajudar?' 
 
 
 def nomeador(id_medico):
