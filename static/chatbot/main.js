@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         var dt = {
           input_text: input
         }
+        console.log('tipo fora: ', typeof dt);
         
         $.ajax({
           url: '',
