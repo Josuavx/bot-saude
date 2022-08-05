@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         messagesContainer.scrollTop = messagesContainer.scrollHeight - messagesContainer.clientHeight;
         setTimeout(() => {   
             botText.innerText = response.at(-1);
-            //textToSpeech(response.res);
+            textToSpeech(response.res);
         }, 2000);
     
     }
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {   
             botText.innerText = response;
             
-            //textToSpeech(response.res);
+            textToSpeech(response.res);
         }, 2000);
     }   
 }
