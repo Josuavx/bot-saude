@@ -9,9 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
           url: '',
           type: 'GET',
           contentType: 'application/json',
-          data: {
-            input_text: input,
-          },
+          data:
+            JSON.stringify(input),
+          
           success: function(response){
             alert(response);
             addChat(input, response.res);
