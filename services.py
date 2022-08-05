@@ -3,6 +3,7 @@ import connection
 import main
 from google_auth_oauthlib.flow import Flow
 from flask import Flask, request, jsonify, render_template
+import requests
 
 
 class values:
@@ -46,10 +47,10 @@ def login():
 #Recebe requisições do front (manipula, responde)
 @app.route('/chatbot', methods= ['GET'])
 def chat():
-    if request.is_json:
+    if request != None:
         text = request.args.get('input_text')
         credencial = values.token
-
+        
         retorno = main.Conversa(credencial, text)
         
         tip = type(retorno)
