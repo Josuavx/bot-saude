@@ -47,7 +47,7 @@ def login():
 @app.route('/chatbot', methods= ['GET'])
 def chat():
     if request.is_json:
-        text = request.args.get('input')
+        text = request.args.get('input_text')
         credencial = values.token
 
         retorno = main.Conversa(credencial, text)
