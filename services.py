@@ -46,7 +46,7 @@ def login():
 #Recebe requisições do front (manipula, responde)
 @app.route('/chatbot', methods= ['GET'])
 def chat():
-    if request.is_json:
+    if type(request) == 'object':
         text = request.args.get('input_text')
         credencial = values.token
 
