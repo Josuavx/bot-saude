@@ -3,8 +3,7 @@ import connection
 import main
 from google_auth_oauthlib.flow import Flow
 from flask import Flask, request, jsonify, render_template
-
-
+import requests
 
 class values:
     token = ""
@@ -50,7 +49,7 @@ def chat():
     if request.is_json:
         text = request.args.get('input_text')
         credencial = values.token
-        
+
         retorno = main.Conversa(credencial, text)
         
         tip = type(retorno)
@@ -91,10 +90,10 @@ def chat():
                 retorno = connection.cancelarConsulta(values.id)
         
 
-        if retorno != None:
-            return {'res': retorno}
-        else: return 'falhou?'
-        
+    if retorno != None:
+        return {'res': retorno}
+    else: return 'falhou?'
+    
     return render_template('/chatbot/index.html')
 
 
