@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
             input_text: input,
           },
           success: function(response){
+            alert(response);
             addChat(input, response.res);
             console.log('req depois: ', response)
           }

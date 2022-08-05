@@ -40,6 +40,6 @@ def Conversa(credencial, txt):
                 c += 1
         else:
             re = contagem = resp_message[0]['text']['text'][0]
-         
+        
         return re
 
