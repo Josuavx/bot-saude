@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
         $.ajax({
           url: '',
           type: 'GET',
+
+          dataType: 'JSON',
           data: {
             input_text: input,
           },
