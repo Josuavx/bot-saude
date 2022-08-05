@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
         $.ajax({
           url: '',
           type: 'GET',
-          contentType: '',
+          contentType: 'JSON',
+          dataType:'JSON',
           data: dt,
           success: function(response){
             alert(response);
