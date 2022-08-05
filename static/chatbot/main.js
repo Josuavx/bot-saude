@@ -5,13 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
         let input = inputField.value;
         inputField.value = "";
         
+        var dt = {
+          input_text: input
+        }
+        
         $.ajax({
           url: '',
           type: 'GET',
           contentType: 'application/json',
-          data: {
-            input_text: input,
-          },
+          data: dt,
           success: function(response){
             alert(response);
             addChat(input, response.res);
