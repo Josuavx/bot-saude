@@ -5,16 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
         let input = inputField.value;
         inputField.value = "";
         
-        var dt = JSON.stringify({
+        var dt = {
           input_text: input
-        })
+        }
         console.log('tipo fora: ', typeof dt);
 
         $.ajax({
           url: '',
           type: 'GET',
           contentType: 'application/json, text/javascript, */*',
-          dataType: 'JSON',
           data: dt,
           success: function(response){
             console.log(typeof response);
