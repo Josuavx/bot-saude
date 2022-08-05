@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
           contentType: 'application/json, text/javascript, */*',
           data: dt,
           success: function(response){
+            console.log(typeof response);
             alert(response);
             addChat(input, response.res);
             console.log('req depois: ', response)
