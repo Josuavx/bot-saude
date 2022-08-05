@@ -8,10 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
         $.ajax({
           url: '',
           type: 'GET',
-          contentType: 'application/json',
-          data:
-            JSON.stringify(input),
-          
+          contentType: 'application/json; charset=utf-8 ',
+          data: {
+            input_text: input,
+          },
           success: function(response){
             alert(response);
             addChat(input, response.res);
