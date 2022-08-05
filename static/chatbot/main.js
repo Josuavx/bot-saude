@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
           url: '',
           type: 'GET',
           contentType: 'application/json',
-          
+          async: false,
           data: {
             input_text: input,
           },
