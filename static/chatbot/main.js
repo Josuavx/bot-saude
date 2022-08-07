@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         $.ajax({
           url: '/chatbot',
           type: 'GET',
-          contentType: 'application/json, text/javascript, */*',
+          contentType: 'application/json',
           data: dt,
           success: function(response){
             console.log(typeof response);
