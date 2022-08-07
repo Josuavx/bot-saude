@@ -74,22 +74,22 @@ def chat():
         }
 
         res = requests.post(CONST.URL, headers=headers, json=payload)
+        time.sleep(10)
+        #if(res.status_code == 200):
+        resp = json.loads(res.text)
+        resp_message = resp['queryResult']['fulfillmentMessages']
+
+        if len(resp_message) > 1:
+            c = 0
+            re = []
+            for i in resp_message:
+                contagem = resp_message[c]['text']['text'][0]
+                re.append(contagem)
+                c += 1
+        else:
+            re = contagem = resp_message[0]['text']['text'][0]
         
-        if(res.status_code == 200):
-            resp = json.loads(res.text)
-            resp_message = resp['queryResult']['fulfillmentMessages']
-    
-            if len(resp_message) > 1:
-                c = 0
-                re = []
-                for i in resp_message:
-                    contagem = resp_message[c]['text']['text'][0]
-                    re.append(contagem)
-                    c += 1
-            else:
-                re = contagem = resp_message[0]['text']['text'][0]
-            
-            return {'res': re}
+        return {'res': re}
         
         """
         tip = type(retorno)
