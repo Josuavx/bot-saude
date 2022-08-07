@@ -5,9 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
         let input = inputField.value;
         inputField.value = "";
         
-        var dt = {
+        var dt = JSON.stringify({
           input_text: input
-        }
+        })
         console.log('tipo fora: ', typeof dt);
 
         $.ajax({
