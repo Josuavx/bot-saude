@@ -54,8 +54,8 @@ def chat():
 
         retorno = main.Conversa(credencial, text)
         time.sleep(5)
-        if retorno != None:
-            return {'res': retorno}
+        
+        return {'res': retorno}
         
         """
         tip = type(retorno)
