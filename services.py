@@ -54,9 +54,6 @@ def chat():
 
         retorno = main.Conversa(credencial, text)
         
-        return {'res': retorno}
-        
-        """
         tip = type(retorno)
         if tip == list:
             if retorno[0] == 'cadastro':
@@ -97,7 +94,7 @@ def chat():
 
         
         return {'res': retorno}
-        """
+        
     return render_template('/chatbot/index.html')
 
 
