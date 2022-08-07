@@ -16,10 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
           contentType: 'application/json',
           data: dt,
           success: function(response){
-            console.log(typeof response);
+            console.log('tipo retorno do ajax: ', typeof response);
+            console.log('res: ', response.res);
             alert(response);
             addChat(input, response.res);
-            console.log('req depois: ', response)
+            
           }
         })
       }
