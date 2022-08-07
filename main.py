@@ -27,6 +27,7 @@ def Conversa(credencial, txt):
     }
 
     res = requests.post(CONST.URL, headers=headers, json=payload)
+    time.sleep(10)
     if(res.status_code == 200):
         resp = json.loads(res.text)
         resp_message = resp['queryResult']['fulfillmentMessages']

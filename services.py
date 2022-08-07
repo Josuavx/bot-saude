@@ -53,7 +53,7 @@ def chat():
         credencial = values.token
 
         retorno = main.Conversa(credencial, text)
-        time.sleep(5)
+        
         
         return {'res': retorno}
         
