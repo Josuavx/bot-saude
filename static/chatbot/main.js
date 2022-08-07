@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
           data: dt,
           success: function(response){
             console.log('tipo retorno do ajax: ', typeof response);
+            console.log('res comp: ', response)
             console.log('res: ', response.res);
             alert(response);
             addChat(input, response.res);
