@@ -94,7 +94,7 @@ def chat():
         
 
         
-        return {'res': retorno}
+            return {'res': retorno}
         
     return render_template('/chatbot/index.html')
 
