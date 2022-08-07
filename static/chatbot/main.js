@@ -5,9 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
         let input = inputField.value;
         inputField.value = "";
         
-        var dt = JSON.stringify({
+        var dt = {
           input_text: input
-        })
+        }
         console.log('tipo fora: ', typeof dt);
 
         $.ajax({
@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
           contentType: 'application/json',
           data: dt,
           success: function(response){
+
             console.log('tipo retorno do ajax: ', typeof response);
             console.log('res comp: ', response)
             console.log('res: ', response.res);
