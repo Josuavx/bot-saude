@@ -7,6 +7,7 @@ import time
 
 
 def Conversa(credencial, txt):
+    inicio = time.time()
     payload = payload = {
         "queryParams": {
             "source": "DIALOGFLOW_CONSOLE",
@@ -40,6 +41,8 @@ def Conversa(credencial, txt):
                 c += 1
         else:
             re = contagem = resp_message[0]['text']['text'][0]
+        
+        fim = time.time()
         
         return re
 
