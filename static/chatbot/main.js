@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log('tipo fora: ', typeof dt);
 
         $.ajax({
-          url: '',
+          url: '/chatbot',
           type: 'GET',
           contentType: 'application/json, text/javascript, */*',
           data: dt,
