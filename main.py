@@ -43,6 +43,7 @@ def Conversa(credencial, txt):
             re = contagem = resp_message[0]['text']['text'][0]
         
         fim = time.time()
+
         
-        return re
+        return re + (fim - inicio)
 
