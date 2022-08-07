@@ -45,5 +45,5 @@ def Conversa(credencial, txt):
         fim = time.time()
 
         
-        return re + (fim - inicio)
+        return (re, (fim - inicio))
 
