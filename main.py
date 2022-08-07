@@ -6,7 +6,7 @@ import json
 import time
 
 
-def Conversa(credencial, txt):
+async def Conversa(credencial, txt):
     payload = payload = {
         "queryParams": {
             "source": "DIALOGFLOW_CONSOLE",
