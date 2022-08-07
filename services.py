@@ -4,6 +4,7 @@ import main
 from google_auth_oauthlib.flow import Flow
 from flask import Flask, request, jsonify, render_template
 import requests
+import time
 
 class values:
     token = ""
@@ -52,7 +53,9 @@ def chat():
         credencial = values.token
 
         retorno = main.Conversa(credencial, text)
-        return {'res': retorno}
+        time.sleep(5)
+        if retorno != None:
+            return {'res': retorno}
         
         """
         tip = type(retorno)
