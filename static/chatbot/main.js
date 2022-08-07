@@ -22,7 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
             alert(response);
             addChat(input, response.res);
             
-          }
+          },
+          async: false
         })
       }
     });
