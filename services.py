@@ -52,7 +52,7 @@ def chat():
         credencial = values.token
 
         retorno = main.Conversa(credencial, text)
-        return {'res': retorno}
+        return {'res': 'testinho'}
         
         """
         tip = type(retorno)
