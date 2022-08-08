@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
           url: '',
           type: 'GET',
           contentType: 'application/json',
+          dataType: 'JSON',
           data: dt,
           success: function(response){
 
@@ -22,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log('res: ', response.res);
             alert(response);
             addChat(input, response.res);
-            
           }
         })
       }
