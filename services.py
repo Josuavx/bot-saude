@@ -54,7 +54,7 @@ def chat():
         credencial = values.token
 
         retorno = main.Conversa(credencial, text)
-        time.sleep(2)
+        
 
         tip = type(retorno)
         if tip == list:
