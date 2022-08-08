@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
           url: '',
           type: 'GET',
           contentType: 'application/json',
-          dataType: 'JSON',
           data: dt,
           success: function(response){
 

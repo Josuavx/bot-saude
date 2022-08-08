@@ -92,8 +92,8 @@ def chat():
             elif (retorno == 'cancelar'):
                 retorno = connection.cancelarConsulta(values.id)
         
+            
 
-        
             return {'res': retorno}
         
     return render_template('/chatbot/index.html')
